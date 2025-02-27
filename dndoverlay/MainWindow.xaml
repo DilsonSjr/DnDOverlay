@@ -1,0 +1,86 @@
+﻿<Window x:Class="dndoverlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dndoverlay"
+        xmlns:views="clr-namespace:dndoverlay.Views"
+        mc:Ignorable="d"
+        Height="1080" Width="1920"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Topmost="True"
+        Icon="/images/hudicons/favicon.ico">
+
+    <!-- Resto do código -->
+    <Window.Background>
+        <RadialGradientBrush GradientOrigin="0 1" Center="0 1">
+            <GradientStop Color="White" Offset="-5"/>
+            <GradientStop Color="Transparent" Offset="0.5"/>
+        </RadialGradientBrush>
+    </Window.Background>
+
+    <Canvas>
+        <views:HudPersonagem x:Name="HudPersonagemControl"
+                             Height="196" Width="575" Canvas.Bottom="0" HorizontalAlignment="Left" VerticalAlignment="Center" Loaded="HudPersonagemControl_Loaded" Canvas.Left="10" Canvas.Top="824" />
+
+        <!-- Botões na parte direita (menu) -->
+        <StackPanel Orientation="Horizontal" Canvas.Bottom="0" Canvas.Right="0">
+            <Button Click="TogglePage" Tag="/Views/CharacterView.xaml"
+                    Width="116" Height="60" Cursor="Hand"
+                    Background="Black" Opacity="0.7"
+                    Foreground="White" BorderThickness="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image Source="/dndoverlay;component/images/HudIcons/personagemicon.png" Width="40" Height="40" Opacity="1"/>
+                    <TextBlock Text="Personagem" FontWeight="Bold" Opacity="1"/>
+                </StackPanel>
+            </Button>
+            <Button Click="TogglePage" Tag="/Views/HabilitiesView.xaml" 
+                    Width="116" Height="60" Cursor="Hand"
+                    Background="Black" Opacity="0.7"
+                    Foreground="White" BorderThickness="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image Source="/dndoverlay;component/images/HudIcons/habilidadesicon.png" Width="40" Height="40"/>
+                    <TextBlock Text="Habilidades" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Click="TogglePage" Tag="/Views/BackpackView.xaml" 
+                    Width="116" Height="60" Cursor="Hand"
+                    Background="Black" Opacity="0.7"
+                    Foreground="White" BorderThickness="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image Source="/dndoverlay;component/images/HudIcons/MochilaIcon.png" Width="40" Height="40"/>
+                    <TextBlock Text="Inventario" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Click="TogglePage" Tag="/Views/StoryView.xaml" 
+                    Width="116" Height="60" Cursor="Hand"
+                    Background="Black" Opacity="0.7"
+                    Foreground="White" BorderThickness="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image Source="/dndoverlay;component/images/HudIcons/historiaicon.png" Width="40" Height="40"/>
+                    <TextBlock Text="Historia" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+            <Button Click="TogglePage" Tag="/Views/ConfigView.xaml" 
+                    Width="116" Height="60" Cursor="Hand"
+                    Background="Black" Opacity="0.7"
+                    Foreground="White" BorderThickness="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Image Source="/dndoverlay;component/images/HudIcons/configs.png" Width="30" Height="40"/>
+                    <TextBlock Text="Configuração" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <!-- Área onde as páginas serão exibidas -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"
+               Width="580" Height="700"
+               Canvas.Bottom="60" Canvas.Right="0"/>
+
+        <!-- Painel para itens fixos -->
+        <StackPanel x:Name="PainelItensFixos" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="10" Width="200" Background="LightGray"
+                    Canvas.Top="100" Canvas.Right="10"/>
+    </Canvas>
+</Window>

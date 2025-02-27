@@ -1,0 +1,81 @@
+﻿<Page x:Class="dndoverlay.Views.StoryView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:dndoverlay.Views"
+      mc:Ignorable="d" d:DesignWidth="580" Height="700">
+
+    <Canvas>
+        <Rectangle Opacity="0.7" Width="582" Height="700" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0B0B0B"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Fill="#141414" Width="282" Height="37" Canvas.Left="17" Canvas.Top="24"/>
+        <Rectangle Fill="#141414" Width="282" Height="129" Canvas.Left="17" Canvas.Top="70"/>
+        <Rectangle Fill="#141414" Width="282" Height="37" Canvas.Left="17" Canvas.Top="208"/>
+        <Rectangle Fill="#141414" Width="545" Height="118" Canvas.Left="17" Canvas.Top="254"/>
+        <Rectangle Fill="#141414" Width="545" Height="75" Canvas.Left="17" Canvas.Top="381"/>
+
+        <Rectangle Fill="#141414" Width="545" Height="222" Canvas.Left="17" Canvas.Top="465" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#141414" Width="254" Height="37" Canvas.Left="308" Canvas.Top="24"/>
+        <Rectangle Fill="#141414" Width="254" Height="37" Canvas.Left="308" Canvas.Top="70" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#141414" Width="254" Height="37" Canvas.Left="308" Canvas.Top="116" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#141414" Width="254" Height="37" Canvas.Left="308" Canvas.Top="162" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#141414" Width="254" Height="37" Canvas.Left="308" Canvas.Top="208" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Opacity="0.7" Width="582" Height="702" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <!-- Textboxes para os campos -->
+
+        <TextBlock Text="Nome:" Canvas.Left="34" Canvas.Top="35" Foreground="White"/>
+        <TextBox x:Name="NomeTextBox" Canvas.Left="74" Canvas.Top="35" Foreground="White" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="203" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Alinhamento:" Canvas.Left="327" Canvas.Top="35" Foreground="White" Width="71" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="AlinhamentoTextBox" Canvas.Left="400" Canvas.Top="35" Foreground="White" Background="Transparent" BorderThickness="0" Width="192" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Idade:" Canvas.Left="327" Canvas.Top="81" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Width="33"/>
+        <TextBox x:Name="IdadeTextBox" Canvas.Left="360" Canvas.Top="81" Foreground="White" Background="Transparent" BorderThickness="0" Width="192" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Gênero:" Canvas.Left="327" Canvas.Top="127" Foreground="White" Width="45" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="GeneroTextBox" Canvas.Left="372" Canvas.Top="127" Foreground="White" Background="Transparent" BorderThickness="0" Width="180" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Espécie:" Canvas.Left="327" Canvas.Top="173" Foreground="White" Width="44" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="EspecieTextBox" Canvas.Left="372" Canvas.Top="173" Foreground="White" Background="Transparent" BorderThickness="0" Width="180" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Facção:" Canvas.Left="327" Canvas.Top="219" Foreground="White" Width="39" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="FacaoTextBox" Canvas.Left="368" Canvas.Top="219" Foreground="White" Background="Transparent" BorderThickness="0" Width="184" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Aparência:" Canvas.Left="34" Canvas.Top="78" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="AparenciaTextBox" Canvas.Left="34" Canvas.Top="99" Foreground="White" Background="Transparent" BorderThickness="0" Width="243" HorizontalAlignment="Center" VerticalAlignment="Top" Height="90" TextAlignment="Justify" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Deidade:" Canvas.Left="34" Canvas.Top="219" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="DeidadeTextBox" Canvas.Left="81" Canvas.Top="219" Foreground="White" Background="Transparent" BorderThickness="0" Width="196" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify" AcceptsReturn="True"/>
+
+        <TextBlock Text="Personalidade:" Canvas.Left="34" Canvas.Top="265" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="PersonalidadeTextBox" Canvas.Left="34" Canvas.Top="286" Foreground="White" Background="Transparent" BorderThickness="0" Width="519" Height="82" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Justify" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Objetivo:" Canvas.Left="34" Canvas.Top="386" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="ObjetivoTextBox" Canvas.Left="34" Canvas.Top="407" Foreground="White" Background="Transparent" BorderThickness="0" Width="519" Height="43" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Justify" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Backstory:" Canvas.Left="34" Canvas.Top="472" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="BackstoryTextBox" Canvas.Left="34" Canvas.Top="494" Foreground="White" Background="Transparent" BorderThickness="0" Width="519" Height="180" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Justify" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <Button x:Name="SalvarButton" Content="Salvar Mudanças"
+                Canvas.Left="402" 
+                Canvas.Top="644" 
+                Click="SalvarButton_Click"
+                Width="150" Height="30"
+                Background="#292929"
+                Foreground="White"
+                BorderThickness="1"
+                BorderBrush="White"/>
+
+        <TextBlock x:Name="TextoSalvo" Text="Salvo!"
+                   Foreground="White" FontSize="50"
+                   Canvas.Left="250" Canvas.Top="100"
+                   Visibility="Collapsed" Opacity="1"/>
+    </Canvas>
+</Page>

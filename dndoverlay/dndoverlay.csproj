@@ -1,0 +1,125 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\ClassIcons\Barbaro.png" />
+    <None Remove="images\ClassIcons\Bardo.png" />
+    <None Remove="images\ClassIcons\Bruxo.png" />
+    <None Remove="images\ClassIcons\Clerigo.png" />
+    <None Remove="images\ClassIcons\Custom.png" />
+    <None Remove="images\ClassIcons\Druida.png" />
+    <None Remove="images\ClassIcons\empty.png" />
+    <None Remove="images\ClassIcons\Feiticeiro.png" />
+    <None Remove="images\ClassIcons\Guerreiro.png" />
+    <None Remove="images\ClassIcons\Ladino.png" />
+    <None Remove="images\ClassIcons\Mago.png" />
+    <None Remove="images\ClassIcons\Monge.png" />
+    <None Remove="images\ClassIcons\Paladino.png" />
+    <None Remove="images\ClassIcons\Patrulheiro.png" />
+    <None Remove="images\HudIcons\camera.png" />
+    <None Remove="images\HudIcons\ClasseArmadura.png" />
+    <None Remove="images\HudIcons\configs.png" />
+    <None Remove="images\HudIcons\favicon.ico" />
+    <None Remove="images\HudIcons\habilidadesicon.png" />
+    <None Remove="images\HudIcons\historiaicon.png" />
+    <None Remove="images\HudIcons\MochilaIcon.png" />
+    <None Remove="images\HudIcons\Movimento.png" />
+    <None Remove="images\HudIcons\personagemicon.png" />
+    <None Remove="images\HudIcons\Peso.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mochila\" />
+    <Folder Include="Status\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\ClassIcons\Barbaro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Bardo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Bruxo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Clerigo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Custom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Druida.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Feiticeiro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Guerreiro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Ladino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Mago.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Monge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Paladino.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ClassIcons\Patrulheiro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\camera.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\ClasseArmadura.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\configs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\habilidadesicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\historiaicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\MochilaIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\Movimento.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\personagemicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\Peso.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\HudIcons\Ouro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

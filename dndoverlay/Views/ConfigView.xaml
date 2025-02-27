@@ -1,0 +1,59 @@
+﻿<Page x:Class="dndoverlay.Views.ConfigView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:dndoverlay.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="580">
+
+    <Canvas>
+        <!-- Filtro de fundo -->
+        <Rectangle Opacity="0.7" Width="580" Height="700" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0B0B0B"/>
+                    <GradientStop Color="Black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Título -->
+        <TextBlock Text="Configurações"
+                   FontSize="30" Foreground="White" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" Canvas.Left="10" Canvas.Top="10"/>
+
+        <!-- Botão de Fechar -->
+        <Button Content="X"
+                FontSize="20" Foreground="White" 
+                Background="#3E0000" Width="40" Height="40" 
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Canvas.Top="10" Canvas.Right="10" BorderThickness="0"
+                Click="CloseButton_Click"/>
+        <TextBlock Text="Ainda não tem muito o que configurar"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="36" Canvas.Top="89" VerticalAlignment="Top" TextAlignment="Justify"/>
+        <TextBlock TextWrapping="Wrap" Text="mas você pode fechar o pograma apertando o botão vermelho,"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="35" Canvas.Top="115" HorizontalAlignment="Left" VerticalAlignment="Top" Width="490" Height="33" TextAlignment="Justify"/>
+        <TextBlock TextWrapping="Wrap" Text="tudo foi feito no intuito de aprender como funciona o VisualStudio, Programas WPF e C#"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="36" Canvas.Top="153" Width="490" Height="52" VerticalAlignment="Top" TextAlignment="Justify" HorizontalAlignment="Center"/>
+        <TextBlock TextWrapping="Wrap" Text="Todas as imagens das classes, e os icones do menu são propriedade intelectual da LarianStudios, esse projeto não possui fins lucrativos"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="60" Canvas.Top="598" Width="490" Height="49" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Justify"/>
+        <TextBlock Text="Não esqueça de salvar antes de sair !!!!"  TextWrapping="Wrap"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="357" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="168" Height="60"/>
+        <TextBlock TextWrapping="Wrap" Text="Pretendo atualizar e melhorar com o tempo, mas a principio pra versão beta 1.0.0 está ok:)"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="36" Canvas.Top="277" Width="490" Height="52" TextAlignment="Justify" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <TextBlock TextWrapping="Wrap" Text="Versão 1.0.4"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="243" Canvas.Top="663" Width="94" Height="27" TextAlignment="Justify" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock TextWrapping="Wrap" Text="o intuito é funcionar mais ou menos como uma ficha de papel, mas voce nao precisa usar papel, ou caneta, e ele deve acomodar a maioria dos VTTS atuais,"
+            FontSize="16" Foreground="White" 
+            Canvas.Left="36" Canvas.Top="205" Width="490" Height="89" TextAlignment="Justify" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+    </Canvas>
+</Page>

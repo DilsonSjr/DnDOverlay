@@ -1,0 +1,554 @@
+﻿<Page x:Class="dndoverlay.Views.CharacterView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:dndoverlay.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="1300" Width="580">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+        <Canvas Height="1300 ">
+            <Rectangle Opacity="0.7" Width="580" Height="1334" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF0B0B0B"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBox  x:Name="NomeRacaTextBox" Text="Nome da Raça"
+                 HorizontalAlignment="Left" 
+                 Canvas.Left="116" 
+                 VerticalAlignment="Center" Canvas.Top="47"
+                 Foreground="White"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 TextAlignment="Center" Width="348">
+
+            </TextBox>
+            <TextBox  x:Name="AntecedenteTextBox" Text="Antecedente" 
+            Canvas.Left="116" 
+            Canvas.Top="63"
+            Foreground="White"
+            Background="Transparent"
+            BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            TextAlignment="Center" Width="348"/>
+
+            <!-- Classe 1-->
+            <TextBox x:Name="ClassName1"
+              Text="Selecione uma Classe"
+              Foreground="White"
+              Background="Transparent"
+                BorderThickness="0"
+              FontWeight="Bold" Canvas.Top="75" VerticalAlignment="Top" Canvas.Left="102" HorizontalAlignment="Center"/>
+            <TextBlock Text="Level"
+                   Foreground="White" Canvas.Left="137" Canvas.Top="222" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <TextBox x:Name="ValorLevel1"
+              Text="01"
+              Foreground="White"
+              Background="Transparent"
+                BorderThickness="0"
+              FontWeight="Bold" Canvas.Top="222" VerticalAlignment="Top" Canvas.Left="169" TextChanged="Level_TextChanged" HorizontalAlignment="Center"/>
+            <Grid Canvas.Left="113" VerticalAlignment="Top" Canvas.Top="96" HorizontalAlignment="Center">
+                <!-- Quadrado onde será exibida a classe -->
+                <Button x:Name="ClassButton"
+                Background="Transparent"
+                Click="ClassButton_Click"
+                BorderThickness="0" Margin="0,1,10,0">
+                    <StackPanel Orientation="Vertical">
+                        <Image x:Name="ClassImage"
+                       Width="100" Height="100"
+                       Source="/dndoverlay;component/images/ClassIcons/Custom.png"/>
+                    </StackPanel>
+                </Button>
+                <!-- Popup com a lista de classes -->
+                <Popup x:Name="ClassPopup"
+               Placement="MousePoint"
+               StaysOpen="False">
+                    <Border Background="Black" Opacity="0.9" CornerRadius="10" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Escolha uma Classe" Foreground="White" FontWeight="Bold"/>
+                            <ListBox x:Name="ClassList" SelectionChanged="ClassList_SelectionChanged" Foreground="White" Background="Transparent" FontWeight="Bold">
+                                <ListBoxItem Tag="images/ClassIcons/Custom.png">Custom</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Barbaro.png">Barbaro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Bardo.png">Bardo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Bruxo.png">Bruxo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Clerigo.png">Clerigo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Druida.png">Druida</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Feiticeiro.png">Feiticeiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Guerreiro.png">Guerreiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Ladino.png">Ladino</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Mago.png">Mago</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Monge.png">Monge</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Paladino.png">Paladino</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Patrulheiro.png">Patrulheiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/empty.png">Vazio</ListBoxItem>
+
+                            </ListBox>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+            <TextBox x:Name="Subclass1"
+            Text="Subclass"
+            Foreground="LightGray"
+            Background="Transparent"
+            BorderThickness="0"
+            FontWeight="Bold" Canvas.Top="201" Canvas.Left="83" TextChanged="Level_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center" Height="16" Width="159" TextAlignment="Center"/>
+            <!-- Classe 2-->
+            <TextBox x:Name="ClassName2"
+            Text="Selecione uma Classe"
+            Foreground="White"
+            Background="Transparent"
+            BorderThickness="0"
+            FontWeight="Bold" Canvas.Top="75" Canvas.Left="368" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Grid Canvas.Left="374" Canvas.Top="96" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <!-- Quadrado onde será exibida a classe -->
+                <Button x:Name="ClassButton1"
+                Background="Transparent"
+                Click="ClassButton_Click"
+                BorderThickness="0" Margin="0,1,10,0">
+                    <StackPanel Orientation="Vertical">
+                        <Image x:Name="ClassImage1"
+                        Width="100" Height="100"
+                        Source="C:\Users\dj--3\Desktop\programa\DnDOverlay\dndoverlay\images\ClassIcons\Custom.png"/>
+
+                    </StackPanel>
+                </Button>
+
+                <!-- Popup com a lista de classes -->
+                <Popup x:Name="ClassPopup1"
+                Placement="MousePoint"
+                StaysOpen="False">
+                    <Border Background="Black" Opacity="0.9" CornerRadius="10" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Escolha uma Classe" Foreground="White" FontWeight="Bold"/>
+                            <ListBox x:Name="ClassList1" SelectionChanged="ClassList_SelectionChanged" Foreground="White" Background="Transparent" FontWeight="Bold">
+                                <ListBoxItem Tag="images/ClassIcons/Custom.png">Custom</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Barbaro.png">Barbaro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Bardo.png">Bardo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Bruxo.png">Bruxo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Clerigo.png">Clerigo</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Druida.png">Druida</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Feiticeiro.png">Feiticeiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Guerreiro.png">Guerreiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Ladino.png">Ladino</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Mago.png">Mago</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Monge.png">Monge</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Paladino.png">Paladino</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/Patrulheiro.png">Patrulheiro</ListBoxItem>
+                                <ListBoxItem Tag="images/ClassIcons/empty.png">Vazio</ListBoxItem>
+
+
+                            </ListBox>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+            <TextBox x:Name="Subclass2"
+            Text="Subclass"
+            Foreground="LightGray"
+            Background="Transparent"
+            BorderThickness="0"
+            FontWeight="Bold" Canvas.Top="201" Canvas.Left="329" TextChanged="Level_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Center" Width="189" TextAlignment="Center"/>
+            <TextBlock Text="Level"
+            Foreground="White" Canvas.Left="398" Canvas.Top="222" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox x:Name="LevelValor2"
+            Text="01"
+            Foreground="White"
+            Background="Transparent"
+            BorderThickness="0"
+            FontWeight="Bold" Canvas.Top="222" Canvas.Left="430" TextChanged="Level_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.786,0.564"/>
+
+            <!-- Força -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="249" Canvas.Left="87">
+                <!-- Força -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+
+                    <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="FOR" Width="39" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="ForcaTextBox" Text="{Binding Strength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding StrengthMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+                <!-- Destreza -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="DES" Width="39" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="DestrezaTextBox" Text="{Binding Dexterity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding DexterityMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+                <!-- Constituição -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="CON" Width="43" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="ConstituicaoTextBox" Text="{Binding Constitution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding ConstitutionMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+                <!-- Inteligência -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="INT" Width="34" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="InteligenciaTextBox" Text="{Binding Intelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding IntelligenceMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+                <!-- Sabedoria -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="SAB" Width="38" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="SabedoriaTextBox" Text="{Binding Wisdom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding WisdomMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+                <!-- Carisma -->
+                <Canvas Width="52" Height="100" Margin="8">
+                    <Rectangle Fill="#141414"  Width="52" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <Rectangle Fill="#141414" Canvas.Top="74"  Width="52" Height="24" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="48" Height="60" Canvas.Left="2" Canvas.Top="3">
+                        <TextBlock Text="CAR" Width="40" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold" Padding="0,0,0,1" FontSize="20"/>
+                        <TextBox x:Name="CarismaTextBox" Text="{Binding Charisma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="40" FontSize="16" Foreground="White" SelectionBrush="#FF656565" 
+                     Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" 
+                     TextAlignment="Center" Padding="0,0,0,1" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding CharismaMod, StringFormat={}{0:+0;-0;0}}" 
+                   Foreground="White" FontWeight="Bold" FontSize="16" TextAlignment="Center" 
+                   HorizontalAlignment="Left" Width="38" Canvas.Left="7" Canvas.Top="75"/>
+                </Canvas>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="371" Canvas.Left="27">
+                <!-- Deslocamento-->
+                <Canvas Width="122" Height="69" Margin="5">
+                    <Rectangle Fill="#141414"  Width="122" Height="69" RadiusX="5" RadiusY="5"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="12" Canvas.Top="28"/>
+                    <TextBlock Text="Deslocamento" Foreground="White" Canvas.Left="11" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="2"/>
+                    <TextBox x:Name="DeslocamentoTextBox" Text="0" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="8" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+                <!-- Iniciativa -->
+                <Canvas Width="122" Height="69" Margin="5">
+                    <Rectangle Fill="#141414" Width="122" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="12" Canvas.Top="28"/>
+                    <TextBlock Text="Iniciativa" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="30" Canvas.Top="2"/>
+                    <TextBox x:Name="IniciativaTextBox" Text="0" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="8" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+                <!-- Tamanho -->
+                <Canvas Width="122" Height="69" Margin="5">
+                    <Rectangle Fill="#141414" Width="122" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="12" Canvas.Top="28"/>
+                    <TextBlock Text="Tamanho" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="29" Canvas.Top="2"/>
+                    <TextBox x:Name="TamanhoTextBox" Text="Médio" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="8" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+                <!-- Hit Dice -->
+                <Canvas Width="122" Height="69" Margin="5">
+                    <Rectangle Fill="#141414"  Width="122" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="12" Canvas.Top="28"/>
+                    <TextBlock Text="Hit Dice" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="33" Canvas.Top="2"/>
+                    <TextBox x:Name="HitDiceTextBox" Text="0d6" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="8" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Canvas.Top= "446.4" Canvas.Left="10" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <!-- Percepção Passiva -->
+                <Canvas Canvas.Top="476" Canvas.Left="19" Width="178" Height="69" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="39" Canvas.Top="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Percepção Passiva" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="26" Canvas.Top="2"/>
+                    <TextBox  x:Name="PercepcaoPassivaTextBox" Text="0" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="36" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+                <!-- Bonus de PROFICIENCIA -->
+                <Canvas Canvas.Top="476" Canvas.Left="202" Width="178" Height="69" Margin="5">
+                    <Rectangle Fill="#141414"  Width="178" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="39" Canvas.Top="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Bonus de Proficiencia" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="14" Canvas.Top="2"/>
+                    <TextBox  x:Name="BonusProficienciaTextBox" Text="0" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="36" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+                <!-- Inspiração -->
+                <Canvas Canvas.Top="476" Canvas.Left="392" Width="178" Height="69" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="69" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Line X1="0" Y1="0" X2="100" Y2="0" Stroke="White" StrokeThickness="1" Canvas.Left="39" Canvas.Top="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Inspiração Heroica" Foreground="White"  FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="24" Canvas.Top="2"/>
+                    <TextBox x:Name="InspiracaoHeroicaTextBox" Text="0" Foreground="White" Background="Transparent" BorderThickness="0" Canvas.Left="36" Canvas.Top="34" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"  Width="106" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+
+                <!-- Atributos -->
+            </StackPanel>
+            <StackPanel Canvas.Left="10" Canvas.Top="540">
+                <!-- Força-->
+                <Canvas Width="178" Height="60" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="60" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Força" Foreground="White" Canvas.Left="60" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="ForcaCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasForca[0]}"/>
+                            <CheckBox x:Name="ForcaCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasForca[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="AtletismoCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding AtletismoCheckBox[0]}"/>
+                            <CheckBox x:Name="AtletismoCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding AtletismoCheckBox[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Atletismo" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+                <!-- Inteligencia -->
+                <Canvas Width="178" Height="146" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="140" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Inteligência" Foreground="White" Canvas.Left="40" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="InteligenciaCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasInteligencia[0]}"/>
+                            <CheckBox x:Name="InteligenciaCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasInteligencia[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="ArcanismoCheckBox1" IsChecked="{Binding ArcanismoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ArcanismoCheckBox2" IsChecked="{Binding ArcanismoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Arcanismo" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="HistoriaCheckBox1" IsChecked="{Binding HistoriaCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="HistoriaCheckBox2" IsChecked="{Binding HistoriaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Historia" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="InvestigacaoCheckBox1" IsChecked="{Binding InvestigacaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="InvestigacaoCheckBox2" IsChecked="{Binding InvestigacaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Investigação" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="NaturezaCheckBox1" IsChecked="{Binding NaturezaCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="NaturezaCheckBox2" IsChecked="{Binding NaturezaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Natureza" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="ReligiaoCheckBox1" IsChecked="{Binding ReligiaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ReligiaoCheckBox2" IsChecked="{Binding ReligiaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Religião" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+            </StackPanel>
+            <StackPanel Canvas.Left="200" Canvas.Top="540">
+                <!-- Carisma -->
+                <Canvas Width="178" Height="109" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="109" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Carisma" Foreground="White" Canvas.Left="55" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="CarismaCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasCarisma[0]}"/>
+                            <CheckBox x:Name="CarismaCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasCarisma[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="AtuacaoCheckBox1" IsChecked="{Binding AtuacaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="AtuacaoCheckBox2" IsChecked="{Binding AtuacaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Atuação" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="EnganacaoCheckBox1" IsChecked="{Binding EnganacaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="EnganacaoCheckBox2" IsChecked="{Binding EnganacaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Enganação" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="IntimidacaoCheckBox1" IsChecked="{Binding IntimidacaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="IntimidacaoCheckBox2" IsChecked="{Binding IntimidacaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Intimidação" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="PersuasaoCheckBox1" IsChecked="{Binding PersuassaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="PersuasaoCheckBox2" IsChecked="{Binding HistoriaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Persuassão" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+
+                <!-- Destreza -->
+                <Canvas Width="178" Height="99" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="99" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Destreza" Foreground="White" Canvas.Left="55" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="DestrezaCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasDestreza[0]}"/>
+                            <CheckBox x:Name="DestrezaCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasDestreza[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="AcrobaciaCheckBox1" IsChecked="{Binding AcrobaciaCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="AcrobaciaCheckBox2" IsChecked="{Binding AcrobaciaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Acrobacia" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="FurtividadeCheckBox1" IsChecked="{Binding FurtividadeCheckBox[0]}"  BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="FurtividadeCheckBox2" IsChecked="{Binding FurtividadeCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Furtividade" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="PrestidigitacaoCheckBox1" IsChecked="{Binding PrestidigitacaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="PrestidigitacaoCheckBox2" IsChecked="{Binding PrestidigitacaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Prestidigitação" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+            </StackPanel>
+            <StackPanel Canvas.Left="390" Canvas.Top="540">
+                <!-- Sabedoria -->
+                <Canvas Width="178" Height="125" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="125" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Sabedoria" Foreground="White" Canvas.Left="55" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="SabedoriaCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasSabedoria[0]}"/>
+                            <CheckBox x:Name="SabedoriaCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasSabedoria[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="IntuicaoCheckBox1" IsChecked="{Binding intuicaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="IntuicaoCheckBox2" IsChecked="{Binding intuicaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Intuição" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="LidarAnimaisCheckBox1" IsChecked="{Binding LidarAnimaisCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="LidarAnimaisCheckBox2" IsChecked="{Binding LidarAnimaisCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Lidar C/ Animais" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="MedicinaCheckBox1" IsChecked="{Binding MedicinaCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="MedicinaCheckBox2" IsChecked="{Binding MedicinaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Medicina" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="PercepcaoCheckBox1" IsChecked="{Binding PercepcaoCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="PercepcaoCheckBox2" IsChecked="{Binding PercepcaoCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Percepção" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="SobrevivenciaCheckBox1" IsChecked="{Binding SobrevivenciaCheckBox[0]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="SobrevivenciaCheckBox2" IsChecked="{Binding SobrevivenciaCheckBox[1]}" BorderThickness="0" VerticalAlignment="Center"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Sobrevivencia" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+
+                <!-- Constituição -->
+                <Canvas Width="178" Height="50" Margin="5">
+                    <Rectangle Fill="#141414" Width="178" Height="50" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Text="Constituição" Foreground="White" Canvas.Left="55" FontSize="16" FontWeight="Bold"/>
+                    <StackPanel  Canvas.Top="20" Canvas.Left="10">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="ConstituicaoCheckBox1" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasConstituicao[0]}"/>
+                            <CheckBox x:Name="ConstituicaoCheckBox2" BorderThickness="0" VerticalAlignment="Center" IsChecked="{Binding SalvaguardasConstituicao[1]}"/>
+                            <TextBox Text="00" Background="Transparent" Foreground="White" BorderThickness="0" Width="30" FontWeight="Bold" TextAlignment="Center" />
+                            <TextBlock Text="Salvaguarda" Background="Transparent" Foreground="White"   />
+                        </StackPanel>
+                    </StackPanel>
+                </Canvas>
+            </StackPanel>
+            <StackPanel Canvas.Top="780" Canvas.Left="30" Margin="5">
+                <Canvas Height="65" Width="508">
+                    <Rectangle Fill="#141414" Height="65" Width="508" RadiusX="5" RadiusY="5"/>
+                    <TextBlock FontWeight="Bold" Text="Treinamento com Armaduras" Foreground="White" Canvas.Left="11" Canvas.Top="5"/>
+                    <TextBox x:Name="TreinamentoArmadurasTextBox"  Foreground="White" Canvas.Top="21" Height="44" Width="498" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Canvas.Left="10"/>
+                </Canvas>
+
+                <Canvas Height="65" Width="508" Margin="5">
+                    <Rectangle Fill="#141414" Height="65" Width="508" RadiusX="5" RadiusY="5"/>
+                    <TextBlock FontWeight="Bold" Text="Treinamento com Armas" Foreground="White" Canvas.Left="11" Canvas.Top="5"/>
+                    <TextBox x:Name="TreinamentoArmasTextBox" Foreground="White" Canvas.Top="21" Height="44" Width="497" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Canvas.Left="11"/>
+                </Canvas>
+
+                <Canvas Height="65" Width="508" Margin="0">
+                    <Rectangle Fill="#141414" Height="65" Width="508" RadiusX="5" RadiusY="5"/>
+                    <TextBlock FontWeight="Bold" Text="Treinamento com Ferramentas" Foreground="White" Canvas.Left="11" Canvas.Top="5"/>
+                    <TextBox x:Name="TreinamentoFerramentasTextBox" Foreground="White" Canvas.Top="21" Height="44" Width="498" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Canvas.Left="10"/>
+                </Canvas>
+
+                <Canvas Height="65" Width="508" Margin="5">
+                    <Rectangle Fill="#141414" Height="65" Width="508" RadiusX="5" RadiusY="5"/>
+                    <TextBlock FontWeight="Bold" Text="Idiomas Conhecidos" Foreground="White" Canvas.Left="11" Canvas.Top="5"/>
+                    <TextBox x:Name="IdiomasConhecidosTextBox"  Foreground="White" Canvas.Top="21" Height="44" Width="497" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Canvas.Left="11"/>
+                    <Rectangle Fill="#141414" Height="65" Width="508" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" Canvas.Top="71" VerticalAlignment="Top"/>
+                    <TextBlock FontWeight="Bold" Text="Resistencias e Fraquezas" Foreground="White" Canvas.Left="11" Canvas.Top="76" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ResistenciasefraquezasTextBox"  Foreground="White" Canvas.Top="92" Height="44" Width="497" Background="Transparent" BorderThickness="0" Canvas.Left="11" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                </Canvas>
+            </StackPanel>
+
+
+            <TextBlock x:Name="SalvoText" Text="Salvo!"
+                   Foreground="White" FontSize="50"
+                   Canvas.Left="250" Canvas.Top="100"
+                   Visibility="Collapsed" Opacity="1"/>
+            <Button Content="Salvar Personagem" 
+Width="150" Height="30"
+                Background="#292929"
+                Foreground="White"
+                BorderThickness="1"
+                BorderBrush="White"
+Canvas.Left="215" Canvas.Top="12"
+Click="SalvarPersonagem_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </Canvas>
+    </ScrollViewer>
+
+</Page>
+  
