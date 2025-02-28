@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="dndoverlay.Views.PlayerFoto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dnd="clr-namespace:dndoverlay.Models"
+             xmlns:local="clr-namespace:dndoverlay.Views"
+             Width="128" Height="128">
+    
+    <Canvas>
+        <Image x:Name="playerimage" Width="128" Height="128" 
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+               Source="{Binding PlayerImage}">
+            <Image.Clip>
+                <RectangleGeometry Rect="0,0,128,129" RadiusX="5" RadiusY="5"/>
+            </Image.Clip>
+        </Image>
+        <Button Width="24" Height="24" Canvas.Top="104"
+                Click="LoadImageButton_Click" 
+                BorderBrush="Transparent" Background="#141414" Opacity="0.7">
+            <Image Source="\images\HudIcons\camera.png" Width="17" Height="17"/>
+        </Button>
+    </Canvas>
+</UserControl>

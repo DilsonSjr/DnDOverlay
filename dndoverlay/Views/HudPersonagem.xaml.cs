@@ -2,24 +2,36 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Win32;
-using System.Windows.Media.Imaging;
-using Newtonsoft.Json;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media;
+using Newtonsoft.Json;
+using System.Windows.Media.Imaging;
+using dndoverlay.Models;
 
 namespace dndoverlay.Views
 {
     public partial class HudPersonagem : UserControl, System.ComponentModel.INotifyPropertyChanged
     {
+        // Propriedade para armazenar a imagem do jogador (renomeada para evitar ambiguidade)
+        private BitmapImage _hudPlayerImage;
+        public BitmapImage HudPlayerImage
+        {
+            get => _hudPlayerImage;
+            set
+            {
+                _hudPlayerImage = value;
+                OnPropertyChanged(nameof(HudPlayerImage));
+            }
+        }
+
         public HudPersonagem()
         {
             InitializeComponent();
 
             // Inscreva-se nos eventos
             NomePersonagemTextBox.TextChanged += SalvarAutomaticamente;
-            DeslocamentoTextBox.TextChanged += SalvarAutomaticamente; // Adicione esta linha
-            ClasseArmaduraTextBox.TextChanged += SalvarAutomaticamente; // Adicione esta linha
+            DeslocamentoTextBox.TextChanged += SalvarAutomaticamente;
+            ClasseArmaduraTextBox.TextChanged += SalvarAutomaticamente;
             CurrentLifeBox.TextChanged += SalvarAutomaticamente;
             MaxLifeBox.TextChanged += SalvarAutomaticamente;
             CurrentXpBox.TextChanged += SalvarAutomaticamente;
@@ -28,23 +40,9 @@ namespace dndoverlay.Views
             HpBar.ValueChanged += SalvarAutomaticamente;
             XpBar.ValueChanged += SalvarAutomaticamente;
 
-            // Inscreva-se no evento PropertyChanged para detectar mudanças na imagem
-            PropertyChanged += HudPersonagem_PropertyChanged;
-
             // Carrega os dados ao iniciar
             string caminhoArquivo = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "personagem.json");
             CarregarDados(caminhoArquivo);
-        }
-
-        // Propriedade bindable para a imagem do jogador
-        public BitmapImage PlayerImage
-        {
-            get { return (BitmapImage)playerimage.Source; }
-            set
-            {
-                playerimage.Source = value;
-                OnPropertyChanged(nameof(PlayerImage));
-            }
         }
 
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
@@ -54,30 +52,7 @@ namespace dndoverlay.Views
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
 
-        private void HudPersonagem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(PlayerImage))
-            {
-                // Salva os dados automaticamente quando a imagem é alterada
-                string caminhoArquivo = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "personagem.json");
-                SalvarDados(caminhoArquivo);
-            }
-        }
-
         // Atualiza a barra de HP
-        private void LoadImageButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff"
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                PlayerImage = new BitmapImage(new Uri(openFileDialog.FileName));
-            }
-        }
-
         private void UpdateLife(object sender, RoutedEventArgs e)
         {
             if (int.TryParse(CurrentLifeBox.Text, out int current) &&
@@ -91,11 +66,6 @@ namespace dndoverlay.Views
         private void HpBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             // Lógica para quando o valor da barra de HP muda
-        }
-
-        private void CurrentLifeBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Lógica para quando o texto da caixa de vida atual muda
         }
 
         private void UpdateXp(object sender, RoutedEventArgs e)
@@ -163,10 +133,8 @@ namespace dndoverlay.Views
                 hudData.Level = level;
             }
 
-            if (PlayerImage != null)
-            {
-                hudData.PlayerImagePath = PlayerImage.UriSource.LocalPath;
-            }
+            // Coleta o caminho da imagem
+            hudData.PlayerImagePath = HudPlayerImage?.UriSource?.LocalPath;
 
             return hudData;
         }
@@ -189,14 +157,18 @@ namespace dndoverlay.Views
 
                 // Atualiza os dados do HudPersonagem
                 var hudData = ColetarDados();
+
+
                 personagemData.NomePersonagem = hudData.NomePersonagem;
-                personagemData.Deslocamento = hudData.Deslocamento; // Atualiza o movimento
-                personagemData.ClasseArmadura = hudData.ClasseArmadura; // Atualiza a classe de armadura
+                personagemData.Deslocamento = hudData.Deslocamento;
+                personagemData.ClasseArmadura = hudData.ClasseArmadura;
                 personagemData.CurrentLife = hudData.CurrentLife;
                 personagemData.MaxLife = hudData.MaxLife;
                 personagemData.CurrentXp = hudData.CurrentXp;
                 personagemData.MaxXp = hudData.MaxXp;
                 personagemData.Level = hudData.Level;
+
+                // Salva o caminho da imagem
                 personagemData.PlayerImagePath = hudData.PlayerImagePath;
 
                 // Salva os dados atualizados no arquivo
@@ -222,17 +194,18 @@ namespace dndoverlay.Views
 
                     // Preenche os controles com os dados carregados
                     NomePersonagemTextBox.Text = personagemData.NomePersonagem;
-                    DeslocamentoTextBox.Text = personagemData.Deslocamento.ToString(); // Preenche o movimento
-                    ClasseArmaduraTextBox.Text = personagemData.ClasseArmadura.ToString(); // Preenche a classe de armadura
+                    DeslocamentoTextBox.Text = personagemData.Deslocamento.ToString();
+                    ClasseArmaduraTextBox.Text = personagemData.ClasseArmadura.ToString();
                     CurrentLifeBox.Text = personagemData.CurrentLife.ToString();
                     MaxLifeBox.Text = personagemData.MaxLife.ToString();
                     CurrentXpBox.Text = personagemData.CurrentXp.ToString();
                     MaxXpBox.Text = personagemData.MaxXp.ToString();
                     LevelTextBox.Text = personagemData.Level.ToString();
 
+                    // Verifica se o caminho da imagem existe e carrega a imagem se for o caso
                     if (!string.IsNullOrEmpty(personagemData.PlayerImagePath))
                     {
-                        PlayerImage = new BitmapImage(new Uri(personagemData.PlayerImagePath));
+                        HudPlayerImage = new BitmapImage(new Uri(personagemData.PlayerImagePath));
                     }
 
                     Console.WriteLine("Dados carregados com sucesso.");
@@ -257,12 +230,12 @@ namespace dndoverlay.Views
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            // Lógica para quando o texto da caixa de texto muda
         }
 
         private void NomePersonagemTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            // Lógica para quando o texto da caixa de nome do personagem muda
         }
 
         private int quantidadeCliquesPositivos = 0;
@@ -337,6 +310,11 @@ namespace dndoverlay.Views
             VariacaoQuantidadeTextBlock.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
+        private void CurrentLifeBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Lógica para quando o texto da caixa de vida atual muda
+        }
+
         private void AtualizarHpBar()
         {
             if (int.TryParse(CurrentLifeBox.Text, out int currentLife) &&
@@ -345,48 +323,6 @@ namespace dndoverlay.Views
                 HpBar.Maximum = maxLife;
                 HpBar.Value = currentLife;
             }
-        }
-
-
-
-        public class PersonagemData
-        {
-            // Dados da CharacterView
-            public string NomePersonagem { get; set; }
-            public string NomeRaca { get; set; }
-            public string Antecedente { get; set; }
-            public string Classe1 { get; set; }
-            public string Subclasse1 { get; set; }
-            public int Level1 { get; set; }
-            public string Classe2 { get; set; }
-            public string Subclasse2 { get; set; }
-            public int Level2 { get; set; }
-            public int Forca { get; set; }
-            public int Destreza { get; set; }
-            public int Constituicao { get; set; }
-            public int Inteligencia { get; set; }
-            public int Sabedoria { get; set; }
-            public int Carisma { get; set; }
-            public int Deslocamento { get; set; } // Movimento
-            public int ClasseArmadura { get; set; } // Classe de Armadura
-            public int Iniciativa { get; set; }
-            public string Tamanho { get; set; }
-            public string HitDice { get; set; }
-            public string PercepcaoPassiva { get; set; }
-            public string BonusProficiencia { get; set; }
-            public string InspiracaoHeroica { get; set; }
-            public string TreinamentoArmaduras { get; set; }
-            public string TreinamentoArmas { get; set; }
-            public string TreinamentoFerramentas { get; set; }
-            public string IdiomasConhecidos { get; set; }
-
-            // Dados do HudPersonagem
-            public int CurrentLife { get; set; }
-            public int MaxLife { get; set; }
-            public int CurrentXp { get; set; }
-            public int MaxXp { get; set; }
-            public int Level { get; set; }
-            public string PlayerImagePath { get; set; }
         }
     }
 }

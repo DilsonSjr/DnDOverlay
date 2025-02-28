@@ -22,7 +22,7 @@
 
     <Canvas>
         <views:HudPersonagem x:Name="HudPersonagemControl"
-                             Height="196" Width="575" Canvas.Bottom="0" HorizontalAlignment="Left" VerticalAlignment="Center" Loaded="HudPersonagemControl_Loaded" Canvas.Left="10" Canvas.Top="824" />
+                             Height="196" Width="575" Canvas.Bottom="0" HorizontalAlignment="Center" VerticalAlignment="Top" Loaded="HudPersonagemControl_Loaded" Canvas.Top="884" Canvas.Left="10" />
 
         <!-- Botões na parte direita (menu) -->
         <StackPanel Orientation="Horizontal" Canvas.Bottom="0" Canvas.Right="0">

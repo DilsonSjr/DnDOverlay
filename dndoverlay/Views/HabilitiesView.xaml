@@ -17,24 +17,23 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Width="577" Height="700" HorizontalAlignment="Center" Canvas.Top="-60" VerticalAlignment="Top">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Width="580" Height="700" HorizontalAlignment="Center" Canvas.Top="-60" VerticalAlignment="Top">
             <StackPanel>
                 <!-- Botão para adicionar slot -->
                 <Button Background="#292929"
                         Foreground="White"
-                        BorderThickness="1"
-                        BorderBrush="White"
+                        BorderThickness="0"
                         Content="Adicionar Slot" 
                         Click="AdicionarSlot_Click" 
                         Margin="5" 
-                        Height="28"/>
+                        Height="28" Width="554"/>
 
                 <!-- Contêiner para os Slots -->
                 <StackPanel x:Name="SlotsContainer" Margin="5"/>
 
                 <!-- Lista de Habilidades -->
                 <ListBox x:Name="ListaHabilidades" Canvas.Left="20" Background="Transparent" BorderThickness="0" 
-                         Width="590" Height="500" >
+                         Width="580" Height="500" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0" Margin="5">
@@ -47,7 +46,7 @@
                                         <!-- Nome da Habilidade -->
                                         <TextBox Text="{Binding Nome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Margin="0,0,9,0" HorizontalAlignment="Center"
                                                  FontSize="18" Background="#141414" Foreground="White" Padding="7"
-                                                 Width="275" Height="37" TextChanged="SalvarHabilidade_Editada"
+                                                 Width="316" Height="37" TextChanged="SalvarHabilidade_Editada"
                                                  BorderThickness="0" FontWeight="Bold" />
 
                                         <!-- Tipo da Ação -->
@@ -61,18 +60,21 @@
                                                  Width="37" Height="37" TextChanged="SalvarHabilidade_Editada"/>
 
                                         <!-- Botão de Excluir -->
-                                        <Button Content="🗑" Width="37" Height="37" Background="#3E0000" Foreground="White" BorderThickness="0"
-                                                Margin="0,0,9,0" VerticalAlignment="Center"
-                                                Click="ExcluirHabilidade_Click"/>
+                                        
                                     </StackPanel>
 
                                     <!-- Descrição da habilidade (inicialmente oculta) -->
-                                    <StackPanel x:Name="DetalhesPanel" Visibility="Collapsed" Orientation="Horizontal">
-                                        <StackPanel Margin="0,0,10,0">
-                                            <TextBlock Text="Descrição:" Foreground="White" Margin="0,5,0,5"/>
+                                    <StackPanel x:Name="DetalhesPanel" Visibility="Collapsed" Orientation="Vertical">
+                                        <TextBlock Text="Descrição:" Foreground="White" Margin="0,5,0,5"/>
+                                        <StackPanel Margin="0,0,00,0" Orientation="Horizontal">
+
                                             <TextBox Text="{Binding Descricao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10"
-                                                  Foreground="White" Background="#141414" Width="550" Height="147" AcceptsReturn="True" TextWrapping="Wrap"
+                                                  Foreground="White" Background="#141414" Width="510" Height="147" AcceptsReturn="True" TextWrapping="Wrap"
                                                   TextChanged="SalvarHabilidade_Editada" BorderThickness="0" />
+                                            
+                                            <Button Content="🗑" Width="37" Height="147" Background="#3E0000" Foreground="White" BorderThickness="0"
+        Margin="9,0,9,0" VerticalAlignment="Center"
+        Click="ExcluirHabilidade_Click"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -87,18 +89,17 @@
         <Button Content="Adicionar Habilidade                                                  ✚" Width="320" Height="30"
                 Background="#292929"
                 Foreground="White"
-                BorderThickness="1"
-                BorderBrush="White"
+                BorderThickness="0"
+
                 Canvas.Bottom="-20"
-                Canvas.Left="7"
+                Canvas.Left="10"
                 Click="AdicionarHabilidade_Click" Canvas.Top="590" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- Botão para salvar as habilidades -->
         <Button Content="Salvar Habilidades" Width="228" Height="30"
                 Background="#292929"
                 Foreground="White"
-                BorderThickness="1"
-                BorderBrush="White"
+                BorderThickness="0"
                 Canvas.Bottom="20"
                 Canvas.Left="340"
                 Click="Salvar_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="590"/>

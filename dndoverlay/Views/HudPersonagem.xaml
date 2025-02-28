@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:dndoverlay.Views"
+             xmlns:local="clr-namespace:dndoverlay"
+             xmlns:views="clr-namespace:dndoverlay.Views"
              mc:Ignorable="d" Height="199" Width="575">
 
     <UserControl.Resources>
@@ -33,30 +34,37 @@
     <Canvas>
         <!-- Retangulos cinzas dos fundos -->
         <Rectangle x:Name="NomeRectangle_Copiar" Width="91" Height="25" 
-        Fill="#88B5B2" Opacity="0.7" 
-        RadiusX="5" RadiusY="5"
-        Canvas.Left="189" Canvas.Top="45" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                   Fill="#88B5B2" Opacity="0.7" 
+                   RadiusX="5" RadiusY="5"
+                   Canvas.Left="189" Canvas.Top="45" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Rectangle x:Name="CABOX" Width="46" Height="46" 
-        Fill="#141414" Opacity="0.7" 
-        RadiusX="5" RadiusY="5"
-        Canvas.Left="5" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Rectangle x:Name="FOTOBOX" Width="128" Height="129" 
-         Fill="#141414" Opacity="0.7" 
-         RadiusX="5" RadiusY="5"
-         Canvas.Left="54" Canvas.Top="37" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                   Fill="#141414" Opacity="0.7" 
+                   RadiusX="5" RadiusY="5"
+                   Canvas.Left="5" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle x:Name="FOTOBOX" Width="128" Height="128"  Opacity="0.7" 
+                   RadiusX="5" RadiusY="5"
+                   Canvas.Left="54" Canvas.Top="37" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#141414"/>
+                    <GradientStop Color="black" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <Rectangle x:Name="NomeRectangle_Copiar2" Width="46" Height="46" 
-         Fill="#141414" Opacity="0.7" 
-         RadiusX="5" RadiusY="5"
-         Canvas.Left="5" Canvas.Top="101" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                   Fill="#141414" Opacity="0.7" 
+                   RadiusX="5" RadiusY="5"
+                   Canvas.Left="5" Canvas.Top="101" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Rectangle x:Name="NomeRectangle" Width="307" Height="34" 
-         Fill="#141414" Opacity="0.1" 
-         RadiusX="5" RadiusY="5"
-         Canvas.Left="189" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="70"/>
+                   Fill="#141414" Opacity="0.1" 
+                   RadiusX="5" RadiusY="5"
+                   Canvas.Left="189" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="70"/>
+
         <!-- Imagens (imagem do player, escudo do CA) -->
-        <Image x:Name="playerimage" Width="128" Height="129" 
-               Canvas.Left="54" Canvas.Top="37" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-        <Image Opacity="0.4" Height="46" Width="44" Source="\images\HudIcons\ClasseArmadura.png"  Stretch="Fill" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="5"/>
-        <Image Opacity="0.4" Height="42" Width="42" Source="\images\HudIcons\Movimento.png" Stretch="Fill" Canvas.Top="103" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="7"/>
+        <views:PlayerFoto Canvas.Left="54" Canvas.Top="37" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Image Opacity="0.4" Height="46" Width="44" Source="/images/HudIcons/ClasseArmadura.png"  Stretch="Fill" Canvas.Top="51" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="5"/>
+        <Image Opacity="0.4" Height="42" Width="42" Source="/images/HudIcons/Movimento.png" Stretch="Fill" Canvas.Top="103" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="7"/>
 
         <!-- Textboxes  -->
         <TextBox x:Name="NomePersonagemTextBox" Text="Nome"
@@ -158,13 +166,6 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-
-        <!-- Botões da Esquerda (Adicionar Foto) -->
-        <Button Width="24" Height="24" Canvas.Top="150"
-                Click="LoadImageButton_Click" 
-                BorderBrush="Transparent" Background="#141414" Canvas.Left="45" Opacity="0.7">
-            <Image Source="\images\HudIcons\camera.png" Width="17" Height="17"/>
-        </Button>
 
         <!-- Barra de Vida -->
         <ProgressBar x:Name="HpBar" Width="347" Height="30" 
@@ -271,7 +272,6 @@
                 <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="2" />
             </TextBlock.Effect>
         </TextBlock>
-
 
         <StackPanel Orientation="Vertical" Canvas.Left="540" Canvas.Bottom="54">
             <Button x:Name="addvida" Click="AddVida_Click" Margin="0,0,0,2"
