@@ -6,14 +6,23 @@ namespace dndoverlay.Models
 {
     public static class PersonagemDataService
     {
-        // Caminho para o arquivo JSON onde os dados serão armazenados
-        private static readonly string CaminhoArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "personagem.json");
+        // Caminho para a pasta "Status" no diretório do programa
+        private static readonly string PastaStatus = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Status");
+
+        // Caminho completo para o arquivo JSON dentro da pasta "Status"
+        private static readonly string CaminhoArquivo = Path.Combine(PastaStatus, "personagem.json");
 
         // Método para salvar os dados do personagem no arquivo JSON
         public static void SalvarDados(PersonagemData personagem)
         {
             try
             {
+                // Verifica se a pasta "Status" existe; se não, cria a pasta
+                if (!Directory.Exists(PastaStatus))
+                {
+                    Directory.CreateDirectory(PastaStatus);
+                }
+
                 // Serializa os dados do personagem para JSON, com formatação legível
                 string json = JsonConvert.SerializeObject(personagem, Formatting.Indented);
 
@@ -32,6 +41,13 @@ namespace dndoverlay.Models
         {
             try
             {
+                // Verifica se a pasta "Status" existe; se não, cria a pasta
+                if (!Directory.Exists(PastaStatus))
+                {
+                    Directory.CreateDirectory(PastaStatus);
+                }
+
+                // Verifica se o arquivo JSON existe
                 if (File.Exists(CaminhoArquivo))
                 {
                     // Lê o arquivo JSON

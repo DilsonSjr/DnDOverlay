@@ -1,12 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
-using Newtonsoft.Json;
 
 namespace dndoverlay.Models
 {
     public class CharacterStats : INotifyPropertyChanged
     {
+        // Campos privados para os atributos
         private int _strength;
         private int _dexterity;
         private int _constitution;
@@ -14,8 +13,10 @@ namespace dndoverlay.Models
         private int _wisdom;
         private int _charisma;
 
+        // Evento para notificar mudanças nas propriedades
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Propriedades públicas para os atributos
         public int Strength
         {
             get => _strength;
@@ -52,6 +53,7 @@ namespace dndoverlay.Models
             set => SetProperty(ref _charisma, value, nameof(Charisma), nameof(CharismaMod));
         }
 
+        // Propriedades para os modificadores de atributos (calculados automaticamente)
         public int StrengthMod => CalculateModifier(Strength);
         public int DexterityMod => CalculateModifier(Dexterity);
         public int ConstitutionMod => CalculateModifier(Constitution);
@@ -59,13 +61,16 @@ namespace dndoverlay.Models
         public int WisdomMod => CalculateModifier(Wisdom);
         public int CharismaMod => CalculateModifier(Charisma);
 
+        // Método para calcular o modificador de um atributo
         private int CalculateModifier(int valueBase) => (valueBase / 2) - 5;
 
+        // Método para notificar mudanças nas propriedades
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // Método para definir propriedades e notificar mudanças
         private void SetProperty(ref int field, int value, string propertyName, string modifierPropertyName)
         {
             if (field != value)
@@ -76,64 +81,43 @@ namespace dndoverlay.Models
             }
         }
 
-        // 🔹 Construtor: Carrega os valores do JSON
+        // Construtor: Carrega os dados do personagem ao inicializar
         public CharacterStats()
         {
-            LoadStatsFromJson();
+            CarregarDados();
         }
 
-        // 🔹 Função para carregar os atributos do JSON
-        private void LoadStatsFromJson()
+        // Método para carregar os dados do personagem
+        public void CarregarDados()
         {
-            string pastaStatus = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Status");
-            string caminhoArquivo = Path.Combine(pastaStatus, "personagem.json");
+            // Carrega os dados do personagem usando o serviço
+            PersonagemData personagem = PersonagemDataService.CarregarDados();
 
-            // Se o arquivo não existir, cria um JSON padrão
-            if (!Directory.Exists(pastaStatus))
-                Directory.CreateDirectory(pastaStatus);
+            // Mapeia os dados para as propriedades da classe
+            Strength = personagem.Forca;
+            Dexterity = personagem.Destreza;
+            Constitution = personagem.Constituicao;
+            Intelligence = personagem.Inteligencia;
+            Wisdom = personagem.Sabedoria;
+            Charisma = personagem.Carisma;
+        }
 
-            if (!File.Exists(caminhoArquivo))
+        // Método para salvar os dados do personagem
+        public void SalvarDados()
+        {
+            // Cria um objeto PersonagemData com os dados atuais
+            PersonagemData personagem = new PersonagemData
             {
-                var personagemPadrao = new
-                {
-                    Forca = 10,
-                    Destreza = 10,
-                    Constituicao = 10,
-                    Inteligencia = 10,
-                    Sabedoria = 10,
-                    Carisma = 10
-                };
+                Forca = Strength,
+                Destreza = Dexterity,
+                Constituicao = Constitution,
+                Inteligencia = Intelligence,
+                Sabedoria = Wisdom,
+                Carisma = Charisma
+            };
 
-                string jsonPadrao = JsonConvert.SerializeObject(personagemPadrao, Formatting.Indented);
-                File.WriteAllText(caminhoArquivo, jsonPadrao);
-            }
-
-            // Agora tenta carregar os valores do arquivo
-            try
-            {
-                string conteudo = File.ReadAllText(caminhoArquivo);
-                dynamic dados = JsonConvert.DeserializeObject<dynamic>(conteudo);
-
-                // Usar SetProperty para garantir que os eventos sejam acionados
-                SetProperty(ref _strength, (int)dados.Forca, nameof(Strength), nameof(StrengthMod));
-                SetProperty(ref _dexterity, (int)dados.Destreza, nameof(Dexterity), nameof(DexterityMod));
-                SetProperty(ref _constitution, (int)dados.Constituicao, nameof(Constitution), nameof(ConstitutionMod));
-                SetProperty(ref _intelligence, (int)dados.Inteligencia, nameof(Intelligence), nameof(IntelligenceMod));
-                SetProperty(ref _wisdom, (int)dados.Sabedoria, nameof(Wisdom), nameof(WisdomMod));
-                SetProperty(ref _charisma, (int)dados.Carisma, nameof(Charisma), nameof(CharismaMod));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao carregar os atributos: {ex.Message}");
-
-                // Se falhar, usa valores padrão
-                SetProperty(ref _strength, 10, nameof(Strength), nameof(StrengthMod));
-                SetProperty(ref _dexterity, 10, nameof(Dexterity), nameof(DexterityMod));
-                SetProperty(ref _constitution, 10, nameof(Constitution), nameof(ConstitutionMod));
-                SetProperty(ref _intelligence, 10, nameof(Intelligence), nameof(IntelligenceMod));
-                SetProperty(ref _wisdom, 10, nameof(Wisdom), nameof(WisdomMod));
-                SetProperty(ref _charisma, 10, nameof(Charisma), nameof(CharismaMod));
-            }
+            // Salva os dados usando o serviço
+            PersonagemDataService.SalvarDados(personagem);
         }
     }
 }

@@ -74,6 +74,20 @@ namespace dndoverlay
                 }
             }
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Obtém a resolução da tela
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+
+            // Define a posição da janela no canto esquerdo superior da tela
+            this.Left = 0;
+            this.Top = 0;
+
+            // Ajusta o tamanho da janela para a resolução da tela
+            this.Width = screenWidth;
+            this.Height = screenHeight;
+        }
 
         private void HudPersonagemControl_Loaded(object sender, RoutedEventArgs e)
         {
