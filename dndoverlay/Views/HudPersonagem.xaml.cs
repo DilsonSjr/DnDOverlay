@@ -324,5 +324,7 @@ namespace dndoverlay.Views
                 HpBar.Value = currentLife;
             }
         }
+
+
     }
 }

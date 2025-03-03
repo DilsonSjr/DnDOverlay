@@ -68,10 +68,16 @@
                 Canvas.Top="644" 
                 Click="SalvarButton_Click"
                 Width="150" Height="30"
-                Background="#292929"
                 Foreground="White"
-                BorderThickness="1"
-                BorderBrush="White"/>
+                BorderThickness="0"
+                BorderBrush="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0" Opacity="0.7">
+                    <GradientStop Color="#263325" Offset="1"/>
+                    <GradientStop Color="#4C292929" Offset="0.622"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
         <TextBlock x:Name="TextoSalvo" Text="Salvo!"
                    Foreground="White" FontSize="50"

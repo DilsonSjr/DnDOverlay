@@ -7,6 +7,30 @@
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="580">
 
+   <Page.Resources>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#141414"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Width" Value="38"/>
+        <Setter Property="Height" Value="38"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                    CornerRadius="2"
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</Page.Resources>
+
     <Canvas Height="580" Margin="0,60,0,60">
         <Rectangle Opacity="0.7" Width="580" Height="700" VerticalAlignment="Top" Canvas.Top="-60">
             <Rectangle.Fill>
@@ -19,14 +43,39 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Width="580" Height="700" HorizontalAlignment="Center" Canvas.Top="-60" VerticalAlignment="Top">
             <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                            Foreground="White"
+                            BorderThickness="0"
+                            Content="Adicionar Slot" 
+                            Click="AdicionarSlot_Click" 
+                            Margin="13" 
+                            Height="37" Width="164"
+                            HorizontalAlignment="Left" Background="#4C292929">
+
+
+                    </Button>
+                    <Button Content="Salvar Habilidades" 
+                            Width="164" Height="37"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="212,0,0,0"
+                            Click="Salvar_Click" 
+                            HorizontalAlignment="Right" 
+                            Canvas.Top="590"
+                            
+                            >
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0" Opacity="0.7">
+                                <GradientStop Color="#263325" Offset="1"/>
+                                <GradientStop Color="#4C292929" Offset="0.622"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+
+                    </Button>
+
+                </StackPanel>
                 <!-- Botão para adicionar slot -->
-                <Button Background="#292929"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Content="Adicionar Slot" 
-                        Click="AdicionarSlot_Click" 
-                        Margin="5" 
-                        Height="28" Width="554"/>
 
                 <!-- Contêiner para os Slots -->
                 <StackPanel x:Name="SlotsContainer" Margin="5"/>
@@ -60,7 +109,7 @@
                                                  Width="37" Height="37" TextChanged="SalvarHabilidade_Editada"/>
 
                                         <!-- Botão de Excluir -->
-                                        
+
                                     </StackPanel>
 
                                     <!-- Descrição da habilidade (inicialmente oculta) -->
@@ -71,7 +120,7 @@
                                             <TextBox Text="{Binding Descricao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10"
                                                   Foreground="White" Background="#141414" Width="510" Height="147" AcceptsReturn="True" TextWrapping="Wrap"
                                                   TextChanged="SalvarHabilidade_Editada" BorderThickness="0" />
-                                            
+
                                             <Button Content="🗑" Width="37" Height="147" Background="#3E0000" Foreground="White" BorderThickness="0"
         Margin="9,0,9,0" VerticalAlignment="Center"
         Click="ExcluirHabilidade_Click"/>
@@ -86,27 +135,22 @@
         </ScrollViewer>
 
         <!-- Botão para adicionar habilidade -->
-        <Button Content="Adicionar Habilidade                                                  ✚" Width="320" Height="30"
-                Background="#292929"
+        <Button Content="Adicionar Habilidade                                                                                                                        ✚" Width="558" Height="38"
+                Background="#4C292929"
                 Foreground="White"
                 BorderThickness="0"
+                Canvas.Left="11"
 
-                Canvas.Bottom="-20"
-                Canvas.Left="10"
-                Click="AdicionarHabilidade_Click" Canvas.Top="590" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                Click="AdicionarHabilidade_Click"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Canvas.Top="591"/>
 
         <!-- Botão para salvar as habilidades -->
-        <Button Content="Salvar Habilidades" Width="228" Height="30"
-                Background="#292929"
-                Foreground="White"
-                BorderThickness="0"
-                Canvas.Bottom="20"
-                Canvas.Left="340"
-                Click="Salvar_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="590"/>
+
 
         <TextBlock x:Name="SalvoText" Text="Salvo!"
                    Foreground="White" FontSize="50"
-                   Canvas.Left="250" Canvas.Top="100"
+                   Canvas.Left="20" Canvas.Top="100"
                    Visibility="Collapsed" Opacity="1"/>
     </Canvas>
 </Page>

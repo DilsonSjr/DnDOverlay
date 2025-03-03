@@ -39,45 +39,12 @@ namespace dndoverlay.Views
                     return;
                 }
 
-                string json;
-                try
-                {
-                    json = JsonConvert.SerializeObject(personagem, Formatting.Indented);
-                }
-                catch (JsonSerializationException ex)
-                {
-                    MessageBox.Show($"Erro ao serializar o personagem: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                // Usar o PersonagemDataService para salvar os dados
+                PersonagemDataService.SalvarDados(personagem);
 
-                // Define o caminho do diretório do programa
-                string pastaStatus = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Status");
-
-                // Criar a pasta se não existir
-                if (!Directory.Exists(pastaStatus))
-                    Directory.CreateDirectory(pastaStatus);
-
-                string caminhoArquivo = System.IO.Path.Combine(pastaStatus, "personagem.json");
-
-                try
-                {
-                    File.WriteAllText(caminhoArquivo, json);
-                }
-                catch (IOException ex)
-                {
-                    MessageBox.Show($"Erro ao salvar o arquivo: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                if (File.Exists(caminhoArquivo))
-                {
-                    SalvoText.Visibility = Visibility.Visible;
-                    IniciarFadeOut(SalvoText);
-                }
-                else
-                {
-                    MessageBox.Show("Falha ao salvar o arquivo.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                // Exibir mensagem de sucesso
+                SalvoText.Visibility = Visibility.Visible;
+                IniciarFadeOut(SalvoText);
             }
             catch (Exception ex)
             {
@@ -87,23 +54,10 @@ namespace dndoverlay.Views
 
         private void CarregarDados()
         {
-            string pastaStatus = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Status");
-            string caminhoArquivo = System.IO.Path.Combine(pastaStatus, "personagem.json");
-
-            if (!Directory.Exists(pastaStatus))
-                Directory.CreateDirectory(pastaStatus);
-
-            if (!File.Exists(caminhoArquivo))
-            {
-                var personagemPadrao = new Personagem();
-                string jsonPadrao = JsonConvert.SerializeObject(personagemPadrao, Formatting.Indented);
-                File.WriteAllText(caminhoArquivo, jsonPadrao);
-            }
-
             try
             {
-                string conteudo = File.ReadAllText(caminhoArquivo);
-                var dados = JsonConvert.DeserializeObject<Personagem>(conteudo);
+                // Usar o PersonagemDataService para carregar os dados
+                var dados = PersonagemDataService.CarregarDados();
 
                 if (dados != null)
                 {
@@ -196,9 +150,9 @@ namespace dndoverlay.Views
         }
 
         // Método para coletar os dados do personagem
-        private Personagem ColetarDadosPersonagem()
+        private PersonagemData ColetarDadosPersonagem()
         {
-            var personagem = new Personagem
+            var personagem = new PersonagemData
             {
                 // Propriedades existentes
                 NomeRaca = NomeRacaTextBox.Text,
@@ -227,7 +181,7 @@ namespace dndoverlay.Views
                 TreinamentoFerramentas = TreinamentoFerramentasTextBox.Text,
                 IdiomasConhecidos = IdiomasConhecidosTextBox.Text,
                 Resistenciasefraquezas = ResistenciasefraquezasTextBox.Text,
-                ClassImagePath1 = ClassImage.Source?.ToString(), 
+                ClassImagePath1 = ClassImage.Source?.ToString(),
                 ClassImagePath2 = ClassImage1.Source?.ToString(),
 
                 // Coletar estados das CheckBoxes
@@ -326,111 +280,5 @@ namespace dndoverlay.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-    }
-
-
-    // Classe para representar os dados do personagem
-    public class Personagem : INotifyPropertyChanged
-    {
-        public Personagem()
-        {
-            // Inicialização padrão para arrays de CheckBoxes
-            SalvaguardasForca = new bool[2];
-            SalvaguardasDestreza = new bool[2];
-            SalvaguardasConstituicao = new bool[2];
-            SalvaguardasInteligencia = new bool[2];
-            SalvaguardasSabedoria = new bool[2];
-            SalvaguardasCarisma = new bool[2];
-            AtletismoCheckBox = new bool[2];
-            AcrobaciaCheckBox = new bool[2];
-            FurtividadeCheckBox = new bool[2];
-            PrestidigitacaoCheckBox = new bool[2];
-            ArcanismoCheckBox = new bool[2];
-            HistoriaCheckBox = new bool[2];
-            InvestigacaoCheckBox = new bool[2];
-            NaturezaCheckBox = new bool[2];
-            ReligiaoCheckBox = new bool[2];
-            AtuacaoCheckBox = new bool[2];
-            EnganacaoCheckBox = new bool[2];
-            IntimidacaoCheckBox = new bool[2];
-            PersuasaoCheckBox = new bool[2];
-            IntuicaoCheckBox = new bool[2];
-            LidarAnimaisCheckBox = new bool[2];
-            MedicinaCheckBox = new bool[2];
-            PercepcaoCheckBox = new bool[2];
-            SobrevivenciaCheckBox = new bool[2];
-        }
-
-        // Propriedades existentes
-        public string NomeRaca { get; set; }
-        public string Antecedente { get; set; }
-        public string Classe1 { get; set; }
-        public string Subclasse1 { get; set; }
-        public int Level1 { get; set; }
-        public string Classe2 { get; set; }
-        public string Subclasse2 { get; set; }
-        public int Level2 { get; set; }
-        public int Forca { get; set; }
-        public int Destreza { get; set; }
-        public int Constituicao { get; set; }
-        public int Inteligencia { get; set; }
-        public int Sabedoria { get; set; }
-        public int Carisma { get; set; }
-        public int Deslocamento { get; set; }
-        public int Iniciativa { get; set; }
-        public string Tamanho { get; set; }
-        public string HitDice { get; set; }
-        public string PercepcaoPassiva { get; set; }
-        public string BonusProficiencia { get; set; }
-        public string InspiracaoHeroica { get; set; }
-        public string TreinamentoArmaduras { get; set; }
-        public string TreinamentoArmas { get; set; }
-        public string TreinamentoFerramentas { get; set; }
-        public string IdiomasConhecidos { get; set; }
-        public string Resistenciasefraquezas { get; set; }
-        public string ClassImagePath1 { get; set; }
-        public string ClassImagePath2 { get; set; } 
-        // Propriedades para as CheckBoxes
-        public bool[] SalvaguardasForca { get; set; }
-        public bool[] SalvaguardasDestreza { get; set; }
-        public bool[] SalvaguardasConstituicao { get; set; }
-        public bool[] SalvaguardasInteligencia { get; set; }
-        public bool[] SalvaguardasSabedoria { get; set; }
-        public bool[] SalvaguardasCarisma { get; set; }
-        public bool[] AtletismoCheckBox { get; set; }
-        public bool[] AcrobaciaCheckBox { get; set; }
-        public bool[] FurtividadeCheckBox { get; set; }
-        public bool[] PrestidigitacaoCheckBox { get; set; }
-        public bool[] ArcanismoCheckBox { get; set; }
-        public bool[] HistoriaCheckBox { get; set; }
-        public bool[] InvestigacaoCheckBox { get; set; }
-        public bool[] NaturezaCheckBox { get; set; }
-        public bool[] ReligiaoCheckBox { get; set; }
-        public bool[] AtuacaoCheckBox { get; set; }
-        public bool[] EnganacaoCheckBox { get; set; }
-        public bool[] IntimidacaoCheckBox { get; set; }
-        public bool[] PersuasaoCheckBox { get; set; }
-        public bool[] IntuicaoCheckBox { get; set; }
-        public bool[] LidarAnimaisCheckBox { get; set; }
-        public bool[] MedicinaCheckBox { get; set; }
-        public bool[] PercepcaoCheckBox { get; set; }
-        public bool[] SobrevivenciaCheckBox { get; set; }
-
-        // Dados do HudPersonagem
-        public int NameTextBox { get; set; }
-        public int CurrentLife { get; set; }
-        public int MaxLife { get; set; }
-        public int CurrentXp { get; set; }
-        public int MaxXp { get; set; }
-        public int Level { get; set; }
-        public string PlayerImagePath { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-
     }
 }

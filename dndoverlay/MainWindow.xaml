@@ -6,12 +6,35 @@
         xmlns:local="clr-namespace:dndoverlay"
         xmlns:views="clr-namespace:dndoverlay.Views"
         mc:Ignorable="d"
-        Height="1080" Width="1920"
         AllowsTransparency="True"
         WindowStyle="None"
         Topmost="True"
-        Icon="/images/hudicons/favicon.ico">
-
+        Icon="/images/hudicons/favicon.ico"
+        Loaded="Window_Loaded">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#141414"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Width" Value="38"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <!-- Resto do código -->
     <Window.Background>
         <RadialGradientBrush GradientOrigin="0 1" Center="0 1">
@@ -22,7 +45,7 @@
 
     <Canvas>
         <views:HudPersonagem x:Name="HudPersonagemControl"
-                             Height="196" Width="575" Canvas.Bottom="0" HorizontalAlignment="Center" VerticalAlignment="Top" Loaded="HudPersonagemControl_Loaded" Canvas.Top="884" Canvas.Left="10" />
+                             Height="196" Width="575" Canvas.Bottom="0" HorizontalAlignment="Center" VerticalAlignment="Top" Loaded="HudPersonagemControl_Loaded" Canvas.Left="10" />
 
         <!-- Botões na parte direita (menu) -->
         <StackPanel Orientation="Horizontal" Canvas.Bottom="0" Canvas.Right="0">
